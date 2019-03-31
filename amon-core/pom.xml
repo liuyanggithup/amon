@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.githup.liuyanggithup</groupId>
+    <artifactId>amon</artifactId>
+    <version>0.1.0</version>
+  </parent>
+  <groupId>com.githup.liuyanggithup</groupId>
+  <artifactId>amon-core</artifactId>
+  <packaging>jar</packaging>
+  <version>0.1.0</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+
+
+    <dependencies>
+      <dependency>
+        <groupId>com.ctrip.framework.apollo</groupId>
+        <artifactId>apollo-client</artifactId>
+        <version>1.2.0</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.0.8.RELEASE</version>
+        <scope>provided</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.aspectj/com.springsource.org.aspectj.runtime -->
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>com.springsource.org.aspectj.runtime</artifactId>
+        <version>1.7.2.RELEASE</version>
+      </dependency>
+
+    </dependencies>
+
+
+
+</project>
