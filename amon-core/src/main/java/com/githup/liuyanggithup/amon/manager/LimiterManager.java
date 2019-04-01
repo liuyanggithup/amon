@@ -4,26 +4,32 @@ import com.githup.liuyanggithup.amon.Limiter;
 import com.githup.liuyanggithup.amon.constants.LimiterConstants;
 import com.githup.liuyanggithup.amon.entity.LimiterEntry;
 import com.githup.liuyanggithup.amon.repository.LimiterEntryRepository;
+import com.githup.liuyanggithup.amon.repository.RepositoryFactory;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.RateLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
+/**
+ * @author: seventeen
+ * @Date: 2019/4/5
+ * @description:
+ */
 @Component
 public class LimiterManager {
 
     private Map<String, RateLimiter> limiters = Maps.newConcurrentMap();
 
-    @Autowired
-    private LimiterEntryRepository limiterEntryRepository;
+    @Resource
+    private RepositoryFactory repositoryFactory;
 
-    @Value(value = "${rate.limiter.app.name}")
+    @Value(value = "${amon.app.name}")
     private String appName;
 
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -104,9 +110,9 @@ public class LimiterManager {
         if (null == rateLimiter) {
             synchronized (this) {
                 Double rate = defaultRate;
-                if (null != limiterEntryRepository) {
+                if (null != repositoryFactory.getLimiterEntryRepository()) {
                     LimiterEntry limiterEntry =
-                            limiterEntryRepository.getByAppNameAndLimiterName(appName, limiterName);
+                            repositoryFactory.getLimiterEntryRepository().getByAppNameAndLimiterName(appName, limiterName);
                     if (null != limiterEntry) {
                         rate = limiterEntry.getRate();
                     }

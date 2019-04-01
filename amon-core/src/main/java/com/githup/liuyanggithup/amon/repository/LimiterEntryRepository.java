@@ -2,7 +2,11 @@ package com.githup.liuyanggithup.amon.repository;
 
 
 import com.githup.liuyanggithup.amon.entity.LimiterEntry;
-
+/**
+ * @author: seventeen
+ * @Date: 2019/4/5
+ * @description:
+ */
 public interface LimiterEntryRepository {
 
 

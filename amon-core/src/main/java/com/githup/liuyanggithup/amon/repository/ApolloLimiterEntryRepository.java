@@ -7,7 +7,6 @@ import com.ctrip.framework.apollo.model.ConfigChange;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.githup.liuyanggithup.amon.entity.LimiterEntry;
 import com.githup.liuyanggithup.amon.manager.LimiterManager;
-import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +16,17 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * @author: seventeen
+ * @Date: 2019/4/5
+ * @description:
+ */
 @Component
-public class ApolloLimiterEntryRepository implements  LimiterEntryRepository{
+public class ApolloLimiterEntryRepository extends AbstractLimiterEntryRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApolloLimiterEntryRepository.class);
-
-
-    private Map<String, LimiterEntry> limitNameValueMap = new ConcurrentHashMap<>();
-
-
     private static final Config config = ConfigService.getAppConfig();
-
+    private Map<String, LimiterEntry> limitNameValueMap = new ConcurrentHashMap<>();
 
     @Autowired
     @Qualifier("limiterManager")
@@ -40,14 +39,14 @@ public class ApolloLimiterEntryRepository implements  LimiterEntryRepository{
         String configKey = appName + "." + limiterName;
         String configProperty = config.getProperty(configKey, null);
         if (null == limitNameValueMap.get(configKey)) {
-            LimiterEntry limiterEntry = toLimiterEntity(configProperty,appName,limiterName);
+            LimiterEntry limiterEntry = toLimiterEntity(configProperty, appName, limiterName);
 
 
             config.addChangeListener(new ConfigChangeListener() {
                 @Override
                 public void onChange(ConfigChangeEvent changeEvent) {
                     for (String key : changeEvent.changedKeys()) {
-                        if(key.equals(configKey)){
+                        if (key.equals(configKey)) {
                             ConfigChange change = changeEvent.getChange(key);
                             String newValue = change.getNewValue();
                             LimiterEntry modifyEntry = toLimiterEntity(newValue, appName, limiterName);
@@ -61,18 +60,9 @@ public class ApolloLimiterEntryRepository implements  LimiterEntryRepository{
 
 
             return limiterEntry;
-        }else {
+        } else {
             return limitNameValueMap.get(configKey);
         }
-    }
-
-
-    private LimiterEntry toLimiterEntity(String configProperty, String appName, String limiterName){
-
-        LimiterEntry limiterEntry = new Gson().fromJson(configProperty, LimiterEntry.class);
-        limiterEntry.setAppName(appName);
-        limiterEntry.setName(limiterName);
-        return limiterEntry;
     }
 
 

@@ -6,6 +6,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * @author: seventeen
+ * @Date: 2019/4/5
+ * @description:
+ */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Limiter {
@@ -15,7 +20,7 @@ public @interface Limiter {
 
     double rate() default 100.0;
 
-    String blockMsg() default "apollo limiter block";
+    String blockMsg() default "amon limiter block";
 
 
 }

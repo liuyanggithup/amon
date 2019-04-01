@@ -1,6 +1,10 @@
 package com.githup.liuyanggithup.amon.constants;
 
-
+/**
+ * @author: seventeen
+ * @Date: 2019/4/5
+ * @description:
+ */
 public class LimiterConstants {
 
     /**

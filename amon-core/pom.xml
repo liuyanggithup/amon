@@ -19,7 +19,6 @@
   </properties>
 
 
-
     <dependencies>
       <dependency>
         <groupId>com.ctrip.framework.apollo</groupId>
@@ -27,19 +26,19 @@
         <version>1.2.0</version>
       </dependency>
 
-      <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-context</artifactId>
         <version>5.0.8.RELEASE</version>
         <scope>provided</scope>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/org.aspectj/com.springsource.org.aspectj.runtime -->
+
       <dependency>
         <groupId>org.aspectj</groupId>
-        <artifactId>com.springsource.org.aspectj.runtime</artifactId>
-        <version>1.7.2.RELEASE</version>
+        <artifactId>aspectjrt</artifactId>
+        <version>1.9.2</version>
       </dependency>
+
 
     </dependencies>
 
