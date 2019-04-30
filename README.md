@@ -29,13 +29,13 @@ amon限流框架将会支持与apollo,xxl-conf,zconf配置中心（具体支持�
 集成支持的配置中心，以下配置项必填
 - amon.configuration.center
 
-	`apollo xxl-conf zconf`
+	`例如amon.configuration.center = apollo`
 
 	集成的配置中心,对应apollo,xxl-conf,zconf是作者的基于zk开源配置中心敬请关注。
 
 - amon.app.name
 
-	`例如amon-sample-apollo`
+	`例如amon.app.name = amon-sample-apollo`
 
 	应用的名称，建议和配置的spring.application.name保持一致。
 
