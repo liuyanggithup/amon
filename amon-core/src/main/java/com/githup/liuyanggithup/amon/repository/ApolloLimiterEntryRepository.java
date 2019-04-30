@@ -38,7 +38,7 @@ public class ApolloLimiterEntryRepository extends AbstractLimiterEntryRepository
 
         String configKey = appName + "." + limiterName;
         String configProperty = config.getProperty(configKey, null);
-        if (null == limitNameValueMap.get(configKey)) {
+        if (null == limitNameValueMap.get(limiterName)) {
             LimiterEntry limiterEntry = toLimiterEntity(configProperty, appName, limiterName);
 
 

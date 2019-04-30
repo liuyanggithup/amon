@@ -16,6 +16,7 @@
 
   <modules>
     <module>amon-core</module>
+    <module>amon-samples</module>
   </modules>
 
   <properties>
