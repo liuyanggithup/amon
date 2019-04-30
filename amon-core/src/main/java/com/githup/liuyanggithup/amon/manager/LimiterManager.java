@@ -36,7 +36,7 @@ public class LimiterManager {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
-     * 获取限流令牌(秒级别限流)
+     * 获取限流令牌(分钟级别限流)
      *
      * @param limiter 限流注解
      */
