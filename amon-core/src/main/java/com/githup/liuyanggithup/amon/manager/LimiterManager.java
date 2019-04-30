@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: seventeen
@@ -42,7 +43,7 @@ public class LimiterManager {
     public void acquire(Limiter limiter) {
         try {
             RateLimiter rateLimiter = getRateLimiter(limiter.name(), limiter.rate());
-            rateLimiter.acquire(LimiterConstants.RATE_LIMITER_SECOND_TIME_UNIT);
+            rateLimiter.acquire(LimiterConstants.RATE_LIMITER_MINUTES_TIME_UNIT);
         } catch (Exception e) {
             logger.error("获取限流令牌异常:limiterName={}", limiter.name(), e);
         }

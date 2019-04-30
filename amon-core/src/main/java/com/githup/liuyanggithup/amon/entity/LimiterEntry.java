@@ -13,10 +13,6 @@ public class LimiterEntry {
     private String appName;
 
     /**
-     * 应用机器数
-     */
-    private Integer appMachineNum;
-    /**
      * 限流场景名称
      */
     private String name;
@@ -48,14 +44,6 @@ public class LimiterEntry {
 
     public void setAppName(String appName) {
         this.appName = appName;
-    }
-
-    public Integer getAppMachineNum() {
-        return appMachineNum;
-    }
-
-    public void setAppMachineNum(Integer appMachineNum) {
-        this.appMachineNum = appMachineNum;
     }
 
 

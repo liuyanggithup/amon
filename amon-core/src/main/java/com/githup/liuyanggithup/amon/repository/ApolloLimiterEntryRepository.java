@@ -28,6 +28,7 @@ public class ApolloLimiterEntryRepository extends AbstractLimiterEntryRepository
     private static final Config config = ConfigService.getAppConfig();
     private Map<String, LimiterEntry> limitNameValueMap = new ConcurrentHashMap<>();
 
+
     @Autowired
     @Qualifier("limiterManager")
     private LimiterManager rateLimiterManager;
@@ -37,8 +38,8 @@ public class ApolloLimiterEntryRepository extends AbstractLimiterEntryRepository
     public LimiterEntry getByAppNameAndLimiterName(String appName, String limiterName) {
 
         String configKey = appName + "." + limiterName;
-        String configProperty = config.getProperty(configKey, null);
-        if (null == limitNameValueMap.get(limiterName)) {
+        String configProperty = config.getProperty(limiterName, null);
+        if (null == limitNameValueMap.get(configKey)) {
             LimiterEntry limiterEntry = toLimiterEntity(configProperty, appName, limiterName);
 
 
@@ -46,7 +47,7 @@ public class ApolloLimiterEntryRepository extends AbstractLimiterEntryRepository
                 @Override
                 public void onChange(ConfigChangeEvent changeEvent) {
                     for (String key : changeEvent.changedKeys()) {
-                        if (key.equals(configKey)) {
+                        if (key.equals(limiterName)) {
                             ConfigChange change = changeEvent.getChange(key);
                             String newValue = change.getNewValue();
                             LimiterEntry modifyEntry = toLimiterEntity(newValue, appName, limiterName);

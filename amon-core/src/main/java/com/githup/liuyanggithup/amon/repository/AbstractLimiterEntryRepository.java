@@ -12,7 +12,9 @@ public abstract class AbstractLimiterEntryRepository implements LimiterEntryRepo
 
     protected LimiterEntry toLimiterEntity(String configProperty, String appName, String limiterName){
 
-        LimiterEntry limiterEntry = new Gson().fromJson(configProperty, LimiterEntry.class);
+
+        LimiterEntry limiterEntry = new LimiterEntry();
+        limiterEntry.setRate(Double.parseDouble(configProperty));
         limiterEntry.setAppName(appName);
         limiterEntry.setName(limiterName);
         return limiterEntry;
