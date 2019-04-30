@@ -1,7 +1,6 @@
 package com.githup.liuyanggithup.amon.repository;
 
 import com.githup.liuyanggithup.amon.entity.LimiterEntry;
-import com.google.gson.Gson;
 
 /**
  * @author: xia_xun
@@ -10,7 +9,7 @@ import com.google.gson.Gson;
  */
 public abstract class AbstractLimiterEntryRepository implements LimiterEntryRepository {
 
-    protected LimiterEntry toLimiterEntity(String configProperty, String appName, String limiterName){
+    protected LimiterEntry toLimiterEntity(String configProperty, String appName, String limiterName) {
 
 
         LimiterEntry limiterEntry = new LimiterEntry();
