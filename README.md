@@ -3,12 +3,12 @@
 
 ----
 
-## 1.介绍
+## 1 介绍
 amon限流框架将会支持与apollo,xxl-conf,zconf配置中心（具体支持项参见release版本说明），动态修改限流速率无需重启。
 
 
-## 2.使用
-####2.1引入jar包
+## 2 使用
+### 2.1 引入jar包
 ```
 <dependency>
     <groupId>com.githup.liuyanggithup</groupId>
@@ -17,14 +17,14 @@ amon限流框架将会支持与apollo,xxl-conf,zconf配置中心（具体支持�
 </dependency>
 ```
 
-####2.2配置扫描
+### 2.2 配置扫描
 在SpringBoot启动类添加
 
 ```
 @ComponentScan(basePackages = {"com.githup.liuyanggithup.amon"})
 ```
 
-####2.3配置中心集成
+### 2.3 配置中心集成
 
 集成支持的配置中心，以下配置项必填
 - amon.configuration.center
@@ -45,7 +45,7 @@ amon限流框架将会支持与apollo,xxl-conf,zconf配置中心（具体支持�
     
     配置自定义的key,value为限流速率
 
-####2.4方法级限流实战
+### 2.4 方法级限流实战
 ```
     @Limiter(name = "amon.test.amon")
     public String amon() {
@@ -54,5 +54,5 @@ amon限流框架将会支持与apollo,xxl-conf,zconf配置中心（具体支持�
 ```
    使用Limiter注解，name属性是在配置中心配置的限流接口名称
    
-##3技术交流&答疑
+## 3 技术交流&答疑
 >QQ群：721567149
