@@ -10,8 +10,6 @@ import com.githup.liuyanggithup.amon.entity.LimiterEntry;
 public abstract class AbstractLimiterEntryRepository implements LimiterEntryRepository {
 
     protected LimiterEntry toLimiterEntity(String configProperty, String appName, String limiterName) {
-
-
         LimiterEntry limiterEntry = new LimiterEntry();
         limiterEntry.setRate(Double.parseDouble(configProperty));
         limiterEntry.setAppName(appName);
