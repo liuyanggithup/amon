@@ -3,7 +3,6 @@ package com.githup.liuyanggithup.amon.manager;
 import com.githup.liuyanggithup.amon.Limiter;
 import com.githup.liuyanggithup.amon.constants.LimiterConstants;
 import com.githup.liuyanggithup.amon.entity.LimiterEntry;
-import com.githup.liuyanggithup.amon.repository.LimiterEntryRepository;
 import com.githup.liuyanggithup.amon.repository.RepositoryFactory;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author: seventeen
