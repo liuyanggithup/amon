@@ -41,25 +41,13 @@ public class LimiterManager {
     public void acquire(Limiter limiter) {
         try {
             RateLimiter rateLimiter = getRateLimiter(limiter.name(), limiter.rate());
-            rateLimiter.acquire(LimiterConstants.RATE_LIMITER_MINUTES_TIME_UNIT);
+            rateLimiter.acquire(limiter.permits());
         } catch (Exception e) {
             logger.error("获取限流令牌异常:limiterName={}", limiter.name(), e);
         }
     }
 
-    /**
-     * 获取限流令牌(秒级别限流)
-     *
-     * @param limiterName 限流场景名称
-     */
-    public void acquire(String limiterName) {
-        try {
-            RateLimiter rateLimiter = getRateLimiter(limiterName, LimiterConstants.DEFAULT_LIMITER_RATE);
-            rateLimiter.acquire(LimiterConstants.RATE_LIMITER_SECOND_TIME_UNIT);
-        } catch (Exception e) {
-            logger.error("获取限流令牌异常:limiterName={}", limiterName, e);
-        }
-    }
+
 
     /**
      * 尝试获取限流令牌(秒级别限流)
@@ -70,7 +58,7 @@ public class LimiterManager {
     public boolean tryAcquire(Limiter limiter) {
         try {
             RateLimiter rateLimiter = getRateLimiter(limiter.name(), limiter.rate());
-            if (rateLimiter.tryAcquire(LimiterConstants.RATE_LIMITER_SECOND_TIME_UNIT)) {
+            if (rateLimiter.tryAcquire(limiter.permits())) {
                 return true;
             } else {
                 logger.info("尝试获取令牌,RateLimiter={}获取限流令牌失败,达到限流值={}", limiter.name(), rateLimiter.getRate());
@@ -82,27 +70,6 @@ public class LimiterManager {
         }
     }
 
-    /**
-     * 尝试获取限流令牌(秒级别限流)
-     * 获取令牌失败返回false,成功返回true
-     *
-     * @param limiterName
-     */
-    public boolean tryAcquire(String limiterName) {
-        try {
-            RateLimiter rateLimiter = getRateLimiter(limiterName, LimiterConstants.DEFAULT_LIMITER_RATE);
-            if (rateLimiter.tryAcquire(LimiterConstants.RATE_LIMITER_SECOND_TIME_UNIT)) {
-                return true;
-            } else {
-                logger.info("尝试获取令牌,RateLimiter={}获取限流令牌失败,达到限流值={}", limiterName, rateLimiter.getRate());
-                return false;
-            }
-        } catch (Exception e) {
-            logger.error("尝试获取限流令牌异常:limiterName={}", limiterName, e);
-            return false;
-        }
-
-    }
 
     private RateLimiter getRateLimiter(String limiterName, double defaultRate) {
         RateLimiter rateLimiter = limiters.get(limiterName);

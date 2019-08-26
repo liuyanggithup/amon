@@ -20,6 +20,10 @@ public @interface Limiter {
 
     double rate() default 100.0;
 
+    int permits() default 60;
+
+    boolean blockStrategy() default true;
+
     String blockMsg() default "amon limiter block";
 
 

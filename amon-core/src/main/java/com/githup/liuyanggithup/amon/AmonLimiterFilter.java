@@ -1,5 +1,6 @@
 package com.githup.liuyanggithup.amon;
 
+import com.githup.liuyanggithup.amon.exception.AmonException;
 import com.githup.liuyanggithup.amon.manager.LimiterManager;
 import com.google.common.collect.Maps;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -35,7 +36,15 @@ public class AmonLimiterFilter {
     @Around("proxyAspect()")
     public Object doInvoke(ProceedingJoinPoint joinPoint) throws Throwable {
         Limiter limiter = getLimiter(joinPoint);
-        rateLimiterManager.acquire(limiter);
+        if (limiter.blockStrategy()) {
+            rateLimiterManager.acquire(limiter);
+        } else {
+            boolean tryAcquire = rateLimiterManager.tryAcquire(limiter);
+            if (!tryAcquire) {
+                throw new AmonException(limiter.blockMsg());
+            }
+        }
+
         return joinPoint.proceed();
     }
 
