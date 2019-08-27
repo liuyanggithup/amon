@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.githup.liuyanggithup</groupId>
         <artifactId>amon</artifactId>
-        <version>0.1.0</version>
+        <version>1.0.0</version>
     </parent>
     <groupId>com.githup.liuyanggithup</groupId>
     <artifactId>amon-core</artifactId>
     <packaging>jar</packaging>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
