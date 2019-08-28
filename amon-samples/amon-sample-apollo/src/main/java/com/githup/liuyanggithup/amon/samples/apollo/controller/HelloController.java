@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @RequestMapping(value = "amon")
-    @Limiter(name = "amon.test.amon",blockStrategy = true,blockMsg = "amon limiter")
+    @Limiter(name = "amon.test.amon", blockStrategy = false, blockMsg = "amon limiter")
     public String amon() {
         return "hello";
     }
