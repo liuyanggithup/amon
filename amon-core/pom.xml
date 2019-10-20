@@ -47,6 +47,11 @@
             <version>5.0.9.RELEASE</version>
         </dependency>
 
+      <dependency>
+        <groupId>com.xuxueli</groupId>
+        <artifactId>xxl-conf-core</artifactId>
+        <version>1.6.0</version>
+      </dependency>
     </dependencies>
 
 
